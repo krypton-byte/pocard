@@ -13,9 +13,9 @@ $ cd pocard && python3 setup.py build && python3 setup.py install --user
 <p>CommandLine<p>
 
 ```bash
-$ pocard index[0-3] "title" "desc" input_image output_image method:[scale, crop, auto]
+$ python3 -m pocard index[0-3] "title" "desc" input_image output_image method:[scale, crop, auto]
 example:
-$ pocard 0 "Title" "desc" in.png out.jpg scale
+$ python3 -m pocard 0 "Title" "desc" in.png out.jpg scale
 ```
 
 <p>Python Interpreter</p>
@@ -23,7 +23,7 @@ $ pocard 0 "Title" "desc" in.png out.jpg scale
 ```python
 >>> from pocard import CARDS
 >>> CARDS[0].maker("Title", "image_input.png", "Desk", font_color=(0, 0, 0), image_method="auto").show()
->>> CARDS[0].maker("Title", "image_input.png", "Desk", font_color=(0, 0, 0), image_method="auto").save("out.png)
+>>> CARDS[0].maker("Title", "image_input.png", "Desk", font_color=(0, 0, 0), image_method="auto").save("out.png")
 # image_input type: BytesIO, Image.open Object, string(path+filename)
 # image_merhod: scale, auto, crop
 ```
