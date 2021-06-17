@@ -28,7 +28,7 @@ $ python3 -m pocard 0 "Title" "desc" in.png out.jpg scale
 >>> CARDS[0].maker("Title", "image_input.png", "Desk", font_color=(0, 0, 0), image_method="auto").show()
 >>> CARDS[0].maker("Title", "image_input.png", "Desk", font_color=(0, 0, 0), image_method="auto").save("out.png")
 # image_input type: BytesIO, Image.open Object, string(path+filename)
-# image_merhod: scale, auto, crop
+# image_method: scale, auto, crop
 ```
 # Preview
 <img src="out.png" width="25%"><img src="out1.png" width="25%"><img src="out2.png" width="25%"><img src="out3.png" width="25%">
