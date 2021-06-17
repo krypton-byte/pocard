@@ -6,6 +6,9 @@
 # Install This Library
 
 ```
+#Pypi
+$ pip3 install pocard
+#Github
 $ git clone https://github.com/krypton-byte/pocard
 $ cd pocard && python3 setup.py build && python3 setup.py install --user
 ```
