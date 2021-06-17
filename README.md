@@ -5,7 +5,7 @@
 # Pokemon Card
 # Install This Library
 
-```
+```bash
 #Pypi
 $ pip3 install pocard
 #Github
