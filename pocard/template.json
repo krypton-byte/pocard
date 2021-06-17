@@ -1,0 +1,94 @@
+[
+    {
+        "filename":"1.png",
+        "config":{
+            "title":{
+                "fontsize":20,
+                "max_size":178,
+                "cordinate":[99, 28],
+                "center":false
+            },
+            "image":{
+                "cordinate":[38, 64],
+                "size":[351, 227]
+            },
+            "desc":{
+                "cordinate":[32, 316],
+                "fontsize":14,
+                "max_size":348,
+                "max_line":10,
+                "space_line":21,
+                "center":false
+            }
+        }
+    },
+    {
+        "filename":"2.jpeg",
+        "config":{
+            "title":{
+                "fontsize":30,
+                "max_size":551,
+                "cordinate":[99,950],
+                "center":true
+            },
+            "image":{
+                "cordinate":[87, 132],
+                "size":[582, 414]
+            },
+            "desc":{
+                "cordinate":[68,630],
+                "fontsize":30,
+                "max_size":639,
+                "max_line":6,
+                "space_line":36,
+                "center":false
+            }
+        }
+    },
+    {
+        "filename":"3.png",
+        "config":{
+            "title":{
+                "fontsize":17,
+                "max_size":178,
+                "cordinate":[106,28],
+                "center":false
+            },
+            "image":{
+                "cordinate":[37, 61],
+                "size":[347, 230]
+            },
+            "desc":{
+                "cordinate":[30, 320],
+                "fontsize":15,
+                "max_size":360,
+                "max_line":10,
+                "space_line":18,
+                "center":false
+            }
+        }
+    },
+    {
+        "filename":"4.png",
+        "config":{
+            "title":{
+                "fontsize":17,
+                "max_size":178,
+                "cordinate":[106, 28],
+                "center":false
+            },
+            "image":{
+                "cordinate":[37, 61],
+                "size":[347, 230]
+            },
+            "desc":{
+                "cordinate":[30, 320],
+                "fontsize":15,
+                "max_size":360,
+                "max_line":10,
+                "space_line":18,
+                "center":false
+            }
+        }
+    }
+]

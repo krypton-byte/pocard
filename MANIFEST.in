@@ -1,0 +1,4 @@
+include *
+include pocard/assets
+include pocard/assets/*
+recursive-include pocard *
