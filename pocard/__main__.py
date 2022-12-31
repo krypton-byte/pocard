@@ -2,25 +2,22 @@ from . import (
     CARDS,
     Image
     )
+from . import Resize
 from os.path import dirname
 import sys
-args = sys.argv[1:]
-def helper():
-    cmd=dirname(__file__).split("/")[-1]
-    print(f"{cmd} index:[0-{len(CARDS)-1}] \"title\" \"desc\" \"image_path\" \"output_path\", \"method:[scale, auto, crop]\"")
-def execute():
-    if args.__len__() == 6:
-        try:
-            CARDS[int(args[0])].maker(args[1], args[3], args[2], image_method=args[5]).save(args[4])
-        except Exception as e:
-            print(e)
-    else:
-        index_card()
-def index_card():
-    helper()
-    print("Index\tSize")
-    for i in enumerate(CARDS):
-        img=Image.open(dirname(__file__)+"/assets/"+i[1].json["filename"])
-        print(f"  {i[0]}\t"+" x ".join(str(x) for x in img.size))
-if __name__ == "__main__":
-    execute()
+import argparse
+args = argparse.ArgumentParser()
+args.add_argument("--title", type=str, required=True)
+args.add_argument("--desc", type=str, required=True)
+args.add_argument("--image", type=argparse.FileType('rb'), required=True)
+args.add_argument("--save", type=argparse.FileType('w'), required=True)
+img = args.add_argument_group('CARD')
+image=img.add_mutually_exclusive_group(required=True)
+for i, v in enumerate(CARDS):
+    image.add_argument(f'--card-{i}', const=v, dest='card', action='store_const')
+method = args.add_argument_group('METHOD')
+method_ = method.add_mutually_exclusive_group(required=True)
+for k,v in Resize.__members__.items():
+    method_.add_argument(f'--{k}', dest='resize', const=v, action='store_const')
+parse = args.parse_args()
+parse.card.maker(parse.title, Image.open(parse.image), parse.desc, parse.resize).save(parse.save, format='jpeg')

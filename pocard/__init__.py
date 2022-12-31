@@ -5,12 +5,15 @@ GITHUB: https://github.com/krypton-byte/
 
 
 """
+from typing import List, Iterable, Tuple
 from io import BytesIO
 from PIL import (
     Image,
     ImageDraw,
     ImageFont
 )
+from enum import Enum
+
 from .ExceptionCard import (
     MethodNotFound
 )
@@ -21,12 +24,16 @@ from .variable import (
     TEMPLATE
 )
 
+class Resize(Enum):
+    AUTO = "auto"
+    SCALE = "scale"
+    CROP = "crop"
 
 class cardmaker:
-    def __init__(self, json_) -> None:
-        self.json = json_
+    def __init__(self, json_: dict) -> None:
+        self.json: dict = json_
 
-    def getBorderColor(self):
+    def getBorderColor(self) -> List[int]:
         """
         AutoBackgroundColor With Max Count Color
         """
@@ -45,18 +52,18 @@ class cardmaker:
             to_return.append(tuple(max_color))
         return to_return
 
-    def patternResCustom(self, x, y, res):
+    def patternResCustom(self, x: int, y: int, res: int) -> Tuple[int, int]:
         """
         AutoScale
         """
         if x == y:
-            return [res, res]
+            return (res, res)
         elif x > y:
-            return [res, int(y/(x/res))]
+            return (res, int(y/(x/res)))
         elif x < y:
-            return [int(x/(y/res)), res]
+            return (int(x/(y/res)), res)
 
-    def smartAutoCropAndscalling(self, target):
+    def smartAutoCropAndscalling(self, target: Tuple[int, int]) -> Image:
         """
         AutoScale&AddLayerWithAutoBackgroundColor
         """
@@ -86,16 +93,16 @@ class cardmaker:
 
     def textmaker(
             self,
-            imgDraw,
-            img_size,
-            cordinate,
-            max_size,
-            text,
-            font,
-            color,
-            center,
-            space_line=1,
-            max_line=1):
+            imgDraw: ImageDraw,
+            img_size: Tuple[int, int],
+            cordinate:Tuple[int, int],
+            max_size: int,
+            text: str,
+            font: ImageFont.FreeTypeFont,
+            color: Tuple[int, int, int],
+            center: bool,
+            space_line: int=1,
+            max_line: int=1) -> None:
         """
         Card maker
         """
@@ -124,21 +131,21 @@ class cardmaker:
 
     def maker(
             self,
-            title,
-            image,
-            desc,
-            image_method,
-            font_color=(0, 0, 0)):
+            title: str,
+            image: Image,
+            desc: str,
+            image_method: Resize,
+            font_color=(0, 0, 0)) -> Image:
         self.img = Image.open(
             f'{ASSETS_DIR}/{self.json["filename"]}'
         ).convert("RGB")
         self.image = Image.open(image) if isinstance(image, str) or isinstance(image, BytesIO) else image
-        if image_method == "auto":
+        if image_method == Resize.AUTO:
             image = self.smartAutoCropAndscalling(tuple(self.json["config"]["image"]["size"]))
             # image.resize(tuple(self.json["config"]["image"]["size"]))
-        elif image_method == "scale":
+        elif image_method == Resize.SCALE:
             image = self.image.resize(tuple(self.json["config"]["image"]["size"]))
-        elif image_method == "crop":
+        elif image_method == Resize.CROP:
             x_target, y_target = self.json["config"]["image"]["size"]
             self.image = self.image.resize(self.patternResCustom(*[min(self.image.size)]*2, res=max(self.json["config"]["image"]["size"])))
             x_original, y_original = self.image.size

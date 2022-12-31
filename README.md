@@ -16,9 +16,28 @@ $ cd pocard && python3 setup.py build && python3 setup.py install --user
 <p>CommandLine<p>
 
 ```bash
-$ python3 -m pocard index[0-3] "title" "desc" input_image output_image method:[scale, crop, auto]
-example:
-$ python3 -m pocard 0 "Title" "desc" in.png out.jpg scale
+krypton-byte@glitch:~/pocard$ python3 -m pocard --title a --desc hai --card-2 --CROP --save anu.jpg --image hasil.webp --help
+usage: __main__.py [-h] --title TITLE --desc DESC --image IMAGE --save SAVE (--card-0 | --card-1 | --card-2 | --card-3) (--AUTO | --SCALE | --CROP)
+
+options:
+  -h, --help     show this help message and exit
+  --title TITLE
+  --desc DESC
+  --image IMAGE
+  --save SAVE
+
+CARD:
+  --card-0
+  --card-1
+  --card-2
+  --card-3
+
+METHOD:
+  --AUTO
+  --SCALE
+  --CROP
+
+$ python3 -m pocard --title "hello world" --desc "this is description" --image input.jpg --save output.jpg --card-0 --AUTO
 ```
 
 <p>Python Interpreter</p>
